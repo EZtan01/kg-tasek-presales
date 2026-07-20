@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { fadeUp, stagger, VIEWPORT_ONCE, VIEWPORT_TIGHT } from "../utils/motion";
 
+// Premium hover (desktop only) for the non-highlight cards. The yellow
+// highlight ("Branch opens") card keeps its own accent + glow and is excluded.
+const CARD_HOVER =
+  "border border-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_1px_2px_rgba(255,204,0,0.05)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-yellow-400/25 md:hover:shadow-[0_16px_40px_rgba(0,0,0,0.5),0_4px_12px_rgba(255,204,0,0.15)]";
+
 const TIMELINE_CARDS = [
   {
     highlight: false,
@@ -61,7 +66,7 @@ export function Timeline() {
                 className={`rounded-3xl p-5 md:p-7 ${
                   yellow
                     ? "bg-kg-yellow text-black"
-                    : "bg-kg-card border border-kg-border text-kg-text shadow-soft-card hover:shadow-soft-card-hover hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    : `bg-kg-card text-kg-text ${CARD_HOVER}`
                 }`}
                 animate={
                   yellow

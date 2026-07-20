@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { PresalesCountdown } from "./components/PresalesCountdown";
 import { Navbar } from "./sections/Navbar";
 import { Hero } from "./sections/Hero";
 import { ValueBand } from "./sections/ValueBand";
@@ -15,12 +17,15 @@ import { MobileStickyBar } from "./sections/MobileStickyBar";
 function BukitIndahPage() {
   return (
     <div className="bg-kg-black text-kg-text pb-20 md:pb-0">
+      <ScrollProgress />
       <Navbar />
       <main>
-        {/* Order: Hero → yellow value band → Why KG → The Place → How To →
-            Timeline → Download CTA → FAQ → Footer. FAQ is the last major section
-            before the footer so the download CTA sits closer to attention. */}
+        {/* Order: Hero → pre-sales countdown → yellow value band → Why KG →
+            The Place → How To → Timeline → Download CTA → FAQ → Footer. FAQ is
+            the last major section before the footer so the download CTA sits
+            closer to attention. */}
         <Hero />
+        <PresalesCountdown />
         <ValueBand />
         <WhyKG />
         <ThePlace />

@@ -2,6 +2,11 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { fadeFromLeft, stagger, VIEWPORT_ONCE, VIEWPORT_TIGHT } from "../utils/motion";
 
+// Premium hover (desktop only) for the regular step cards. The yellow
+// "IMPORTANT" step keeps its own accent styling and is excluded.
+const CARD_HOVER =
+  "border border-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_1px_2px_rgba(255,204,0,0.05)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-yellow-400/25 md:hover:shadow-[0_16px_40px_rgba(0,0,0,0.5),0_4px_12px_rgba(255,204,0,0.15)]";
+
 // Vertical (9:16) app-tutorial video. Autoplays muted when scrolled into view
 // and pauses when it leaves — IntersectionObserver keeps it from eating
 // resources while offscreen and satisfies iOS Safari's gesture rules
@@ -123,7 +128,7 @@ export function HowTo() {
                 className={`rounded-3xl p-6 md:p-7 flex gap-5 md:gap-6 items-start ${
                   isImportant
                     ? "border-2 border-kg-yellow bg-kg-yellow/[0.04] transition"
-                    : "border border-kg-border bg-kg-card shadow-soft-card hover:shadow-soft-card-hover hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    : `bg-kg-card ${CARD_HOVER}`
                 }`}
                 animate={
                   isImportant

@@ -75,7 +75,7 @@ export function FAQ() {
                 key={i}
                 variants={fadeUp}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-kg-card border border-kg-border rounded-3xl overflow-hidden shadow-soft-card hover:shadow-soft-card-hover hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="bg-kg-card border border-white/5 rounded-3xl overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.4),0_1px_2px_rgba(255,204,0,0.05)] transition-all duration-300 md:hover:border-yellow-400/25"
               >
                 <button
                   type="button"

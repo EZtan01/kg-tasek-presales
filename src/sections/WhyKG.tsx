@@ -31,6 +31,13 @@ const ICONS: Record<string, LucideIcon> = {
 const FLIP_HINT_FRONT = "Tap to learn more →";
 const FLIP_HINT_BACK = "Tap to close ←";
 
+// Premium hover (desktop only): resting yellow-tinted shadow + hairline border,
+// lifting into a stronger yellow glow on hover. Scoped to md: so touch devices
+// (where these cards are tap-to-flip) get no sticky hover state. Not applied to
+// yellow accent faces.
+const CARD_HOVER =
+  "border border-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_1px_2px_rgba(255,204,0,0.05)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-yellow-400/25 md:hover:shadow-[0_16px_40px_rgba(0,0,0,0.5),0_4px_12px_rgba(255,204,0,0.15)]";
+
 // Top row — 3 hero cards.
 const HERO_CARDS = [
   {
@@ -139,7 +146,7 @@ export function WhyKG() {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-full h-full bg-[#1A1A1A] border border-kg-border rounded-3xl p-5 md:p-8 flex flex-row items-center gap-4 md:flex-col md:items-start md:gap-0 shadow-soft-card hover:shadow-soft-card-hover transition-shadow duration-300">
+                      <div className={`w-full h-full bg-[#1A1A1A] ${CARD_HOVER} rounded-3xl p-5 md:p-8 flex flex-row items-center gap-4 md:flex-col md:items-start md:gap-0`}>
                         <motion.div
                           className="shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-xl bg-kg-yellow/15 text-kg-yellow flex items-center justify-center mb-0 md:mb-5"
                           animate={{ scale: [1, 1.04, 1] }}
@@ -208,7 +215,7 @@ export function WhyKG() {
                   ariaLabel={card.title}
                   className="w-full h-full"
                   front={
-                    <div className="w-full h-full bg-kg-card border border-kg-border rounded-3xl p-4 md:p-5 flex flex-col shadow-soft-card hover:shadow-soft-card-hover transition-shadow duration-300">
+                    <div className={`w-full h-full bg-kg-card ${CARD_HOVER} rounded-3xl p-4 md:p-5 flex flex-col`}>
                       <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-kg-yellow/10 text-kg-yellow flex items-center justify-center mb-3">
                         <Icon size={18} strokeWidth={2.25} className="md:hidden" />
                         <Icon size={20} strokeWidth={2.25} className="hidden md:block" />

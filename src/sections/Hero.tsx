@@ -44,7 +44,8 @@ export function Hero() {
     <section
       id="top"
       style={{
-        background: "radial-gradient(ellipse at top, #1a1a1a 0%, #000000 60%)",
+        background:
+          "radial-gradient(ellipse 800px 400px at 50% 0%, rgba(255, 204, 0, 0.06) 0%, transparent 60%), radial-gradient(ellipse at center, #1a1a1a 0%, #000000 70%)",
       }}
     >
       {/* === Section 1: title block (above the photo) === */}
@@ -122,7 +123,9 @@ export function Hero() {
         transition={{ delay: STAGGER * 7, duration: 1.0, ease: EASE }}
       >
         <div className="w-full bg-black">
-          {/* Photo placeholder */}
+          {/* Photo placeholder — 16px gutter via the px-4 wrapper (using a
+              horizontal margin here with w-full would overflow the viewport). */}
+          <div className="px-4">
           <div
             className="w-full flex items-center justify-center"
             style={{
@@ -134,7 +137,6 @@ export function Hero() {
                 "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%)",
               border: "2px dashed rgba(255, 204, 0, 0.3)",
               borderRadius: "24px",
-              margin: "0 16px",
             }}
           >
             <div className="text-center px-6">
@@ -160,6 +162,7 @@ export function Hero() {
                 3D renderings of Tasek Central branch will be uploaded here
               </p>
             </div>
+          </div>
           </div>
 
           {/* Caption below (keep for consistency) */}
