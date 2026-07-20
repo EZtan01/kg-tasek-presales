@@ -1,0 +1,738 @@
+input ActivateMembershipInput {
+  id: String!
+}
+input ActivityListInput {
+  date: String!
+}
+input BannerListInput {
+  placement: String!
+}
+input CancelClassPassInput {
+  id: String!
+}
+input CancelMembershipInput {
+  id: String!
+}
+input CancelPtAppointmentInput {
+  id: String!
+}
+input CancelPtSessionInput {
+  id: String!
+}
+input CashoutListInput {
+  id: ID
+}
+input ChangePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+  conPassword: String!
+}
+input ClassListInput {
+  id: ID
+  gymID: String
+  isEnrolled: Boolean
+}
+input ClassPackageListInput {
+  id: String
+}
+input ClassPassListInput {
+  id: String
+  status: [String!]
+}
+input CounterQrInfoInput {
+  qrText: String!
+}
+input CreateCashoutInput {
+  amount: Float!
+}
+input CreateClassPassInput {
+  productCode: String!
+  promoCode: String
+  paymentChannel: String!
+}
+input CreateMembershipInput {
+  gymID: String
+  productCode: String!
+  promoCode: String
+  paymentChannel: String!
+}
+input CreatePtSessionInput {
+  trainerID: String!
+  productCode: String!
+  promoCode: String
+  paymentChannel: String!
+}
+input EnrollEntitlementInput {
+  id: String!
+  params: [EntitlementEnrollParam!]
+}
+input EntitlementEnrollParam {
+  key: String!
+  value: String!
+}
+input FeeInput {
+  productType: String!
+  productCode: String!
+  promoCode: String
+  paymentChannel: String
+}
+input ForgotPasswordInput {
+  email: String!
+  contactNo: String!
+}
+input FreezeMembershipInput {
+  id: String!
+  cycle: Float!
+}
+input GymCrowdInput {
+  gymID: String!
+}
+input InitInput {
+  deviceType: String!
+  deviceModel: String!
+  deviceToken: String!
+  appVersion: String!
+}
+input LoginInput {
+  email: Email!
+  password: String!
+  deviceType: String!
+  deviceModel: String!
+  deviceToken: String
+  appVersion: String!
+}
+input MemberVoucherListInput {
+  id: String
+  status: [String!]
+}
+input MembershipPackageListInput {
+  packageCode: String
+  category: String
+}
+input NotificationInput {
+  id: String
+}
+input NotificationListInput {
+  id: ID
+  read: Boolean
+}
+input PaginationInput {
+  offset: Int = 0
+  limit: Int = 10
+  orderBy: String = id
+  orderDir: String = DESC
+}
+input PayProductInput {
+  productType: String!
+  productID: String!
+  paymentChannel: String!
+}
+input ProceedEmandateInput {
+  buyerFirstName: String!
+  buyerLastName: String!
+  token: String!
+  bankCode: String!
+  bankAccNo: String!
+}
+input ProductPaymentInput {
+  productType: String!
+  productID: String!
+  paymentChannel: String!
+}
+input PtAppointmentListInput {
+  id: String
+  sessionID: String
+  statuses: [String!]
+}
+input PtPackageListInput {
+  trainerID: String!
+}
+input PtSessionListInput {
+  id: String
+  status: [String!]
+}
+input RedeemCodeInput {
+  code: String!
+}
+input RegisterClassInput {
+  classID: String!
+}
+input RegisterInput {
+  gymID: String!
+  email: Email!
+  password: String!
+  firstName: String!
+  lastName: String!
+  contactNo: String!
+  contactNoValidatedToken: String
+  emergencyContact: String!
+  dob: String!
+  gender: String!
+  referralCode: String
+  profileImage: String!
+  deviceType: String!
+  deviceModel: String!
+  deviceToken: String
+  appVersion: String!
+}
+input RegisterPtAppointmentInput {
+  sessionID: String!
+  startTime: Time!
+}
+input SetReferrerInput {
+  referralCode: String!
+}
+input SubscribeMembershipInput {
+  packageCode: String!
+}
+input TrainerListInput {
+  id: ID
+  level: String
+}
+input UnregisterClassInput {
+  classID: String!
+}
+input UpdateBankInfoInput {
+  bankName: String!
+  bankAccountName: String!
+  bankAccountNo: String!
+}
+input UpdateDeviceTokenInput {
+  deviceType: String!
+  deviceModel: String!
+  deviceToken: String!
+  appVersion: String!
+}
+input UpdateHomeGymInput {
+  id: ID!
+}
+input UpdateNotificationReadStatusInput {
+  id: String
+  read: Boolean!
+}
+input UpdateProfileImageInput {
+  profileImage: String!
+}
+input UpdateProfileInput {
+  id: ID!
+  gymID: String
+  firstName: String
+  lastName: String
+  phoneNo: String
+  email: String
+}
+input UpdateSecurePinInput {
+  oldPin: String!
+  newPin: String!
+  conPin: String!
+}
+input UseMemberVoucherInput {
+  id: String!
+}
+input ValidateAccountInput {
+  otp: String!
+}
+input ValidatePromoCodeInput {
+  productType: String!
+  productCode: String!
+  promoCode: String!
+}
+input WalletPaymentInput {
+  counterID: String!
+  amount: Float!
+  pin: String!
+}
+input WalletTopupInput {
+  amount: Float!
+}
+input WalletTxnListInput {
+  id: ID
+}
+interface Node {
+  id: ID!
+}
+type Activity {
+  id: ID!
+  title: String!
+  desc: String!
+  startAt: Time!
+  endAt: Time!
+  registrants: [Member!]
+}
+type ActivityList {
+  nodes: [Activity]
+  pageInfo: PageInfo!
+}
+type AuthPayload {
+  token: String!
+  user: CurrentUser!
+}
+type Banner {
+  id: ID!
+  imageUrl: String!
+  command: String
+  updatedAt: Time!
+  createdAt: Time!
+}
+type BannerList {
+  nodes: [Banner]
+  pageInfo: PageInfo!
+}
+type CashoutList {
+  nodes: [MemberCashout]
+  pageInfo: PageInfo!
+}
+type CheckoutRequest {
+  id: String!
+  checkoutUrl: String!
+}
+type Class {
+  id: ID!
+  type: String!
+  typeDesc: String!
+  trainerID: String!
+  trainer: Trainer!
+  imageUrl: String!
+  title: String!
+  desc: String!
+  body: String!
+  location: String!
+  registeredAt: Time
+  registrants: [Member!]
+  reserved: Int!
+  limit: Int!
+  startAt: Time!
+  endAt: Time!
+  duration: String!
+}
+type ClassList {
+  nodes: [Class]
+  pageInfo: PageInfo!
+}
+type ClassPackage {
+  id: ID!
+  name: String!
+  desc: String!
+  price: Float!
+  salePrice: Float!
+  validitySlot: Int!
+  validityDay: Int!
+}
+type ClassPackageList {
+  nodes: [ClassPackage]
+  pageInfo: PageInfo!
+}
+type ClassPass {
+  id: ID!
+  status: String!
+  statusDesc: String!
+  usage: Int!
+  usageMax: Int!
+  usageDesc: String!
+  startDate: String!
+  endDate: String!
+}
+type ClassPassList {
+  nodes: [ClassPass]
+  pageInfo: PageInfo!
+}
+type CurrentUser {
+  id: ID!
+  gymID: String!
+  gym: Gym!
+  wallet: Wallet
+  membership: Membership
+  accessPasses: [Membership!]
+  doorAccess: DoorAccess
+  referral: Referral
+  primaryPaymentMethod: PaymentMethod
+  entitlements: [Entitlement!]
+  imageUrl: String!
+  name: String!
+  firstName: String!
+  lastName: String!
+  contactNo: String!
+  email: String!
+  referralCode: String!
+  verified: Boolean!
+  hasSecurePin: Boolean!
+}
+type DoorAccess {
+  valid: Boolean!
+  qrValue: String!
+}
+type Emandate {
+  id: ID!
+  status: String!
+  memberIdNo: String!
+  memberContactNo: String!
+  memberEmail: String!
+  buyerFirstName: String!
+  buyerLastName: String!
+  refNo: String!
+  fpxRefNo: String!
+  txnAmount: Float!
+  desc: String!
+  buyerBankCode: String!
+  buyerCode: String!
+  lastResponseCode: String!
+  applicationType: String!
+  frequencyMode: String!
+  maximumFrequency: Int!
+  startDate: Time!
+  endDate: Time!
+  completeDate: Time
+}
+type Entitlement {
+  id: ID!
+  code: String!
+  expiredAt: Time
+}
+type Fee {
+  discount: Float!
+  discountDesc: String!
+  subtotal: Float!
+  taxAmount: Float!
+  amount: Float!
+}
+type Gym {
+  id: ID!
+  name: String!
+  address: String!
+  contactNo: String!
+  operationHour: String!
+}
+type GymCrowd {
+  gymID: String!
+  crowdLevel: Float!
+}
+type Member {
+  id: ID!
+  gymID: String!
+  gym: Gym!
+  imageUrl: String!
+  name: String!
+  createdAt: Time!
+}
+type MemberCashout {
+  id: ID!
+  status: String!
+  statusDesc: String!
+  amount: Float!
+  updatedAt: Time!
+  createdAt: Time!
+}
+type MemberNotification {
+  id: ID!
+  imageUrl: String!
+  title: String!
+  desc: String!
+  body: String!
+  actionType: String!
+  actionMeta: String!
+  read: Boolean!
+  createdAt: Time!
+}
+type MemberVoucher {
+  id: ID!
+  voucherID: String!
+  voucher: Voucher!
+  status: String!
+  statusDesc: String!
+  startDate: String!
+  endDate: String!
+  updatedAt: Time!
+  createdAt: Time!
+}
+type MemberVoucherList {
+  nodes: [MemberVoucher]
+  pageInfo: PageInfo!
+}
+type MemberWalletTxn {
+  id: ID!
+  txnType: String!
+  txnTypeDesc: String!
+  amount: Float!
+  createdAt: Time!
+}
+type Membership {
+  id: ID!
+  status: String!
+  packageCode: String!
+  package: MembershipPackage!
+  tier: String
+  tierProgress: String!
+  startDate: String!
+  endDate: String!
+  desc: String!
+  statusDesc: String!
+  subscription: MembershipSubscription
+}
+type MembershipPackage {
+  id: ID!
+  applicableGymIDs: [String!]
+  applicableGyms: [Gym!]
+  tiers: [String!]
+  tierInfos: [MembershipTierInfo!]
+  imageUrl: String!
+  name: String!
+  desc: String!
+  code: String!
+  cost: Float!
+  price: Float!
+  salePrice: Float!
+  paymentRecur: String!
+  paymentRecurDesc: String!
+  validityDay: Int!
+  benefits: [String!]
+  tncUrl: String!
+}
+type MembershipPackageList {
+  nodes: [MembershipPackage]
+  pageInfo: PageInfo!
+}
+type MembershipSubscription {
+  id: ID!
+  status: String!
+  cycleStartTime: Time
+  cycleEndTime: Time
+  nextBillingTime: Time
+}
+type MembershipTierInfo {
+  id: ID!
+  code: String!
+  name: String!
+  desc: String!
+  price: Float!
+  monthsToUpgrade: Int
+}
+type Merchant {
+  id: ID!
+  imageUrl: String!
+  name: String!
+}
+type MerchantCounter {
+  counterID: String!
+  merchantID: String!
+  imageUrl: String!
+  name: String!
+  amount: String
+}
+type Mutation {
+  login(input: LoginInput!): AuthPayload
+  register(input: RegisterInput!): AuthPayload
+  logout: Boolean!
+  forgotPassword(input: ForgotPasswordInput!): Boolean!
+  changePassword(input: ChangePasswordInput!): Boolean!
+  updateSecurePin(input: UpdateSecurePinInput!): Boolean!
+  updateDeviceToken(input: UpdateDeviceTokenInput!): Boolean!
+  validateAccount(input: ValidateAccountInput!): CurrentUser
+  proceedEmandate(input: ProceedEmandateInput!): Proceed!
+  updateHomeGym(input: UpdateHomeGymInput!): CurrentUser
+  updateBankInfo(input: UpdateBankInfoInput!): CurrentUser!
+  updateProfileImage(input: UpdateProfileImageInput!): CurrentUser
+  updateProfile(input: UpdateProfileInput!): CurrentUser!
+  setReferrer(input: SetReferrerInput!): CurrentUser!
+  createCashout(input: CreateCashoutInput!): MemberCashout!
+  redeemCode(input: RedeemCodeInput!): Redemption!
+  registerClass(input: RegisterClassInput!): Class!
+  unregisterClass(input: UnregisterClassInput!): Class!
+  registerPtAppointment(input: RegisterPtAppointmentInput!): PtAppointment!
+  freezeMembership(input: FreezeMembershipInput!): Membership!
+  createClassPass(input: CreateClassPassInput!): CheckoutRequest!
+  createPtSession(input: CreatePtSessionInput!): CheckoutRequest!
+  createMembership(input: CreateMembershipInput!): CheckoutRequest!
+  cancelMembership(input: CancelMembershipInput!): Membership!
+  activateMembership(input: ActivateMembershipInput!): Membership!
+  cancelPtSession(input: CancelPtSessionInput!): PtSession!
+  cancelClassPass(input: CancelClassPassInput!): ClassPass!
+  cancelPTAppointment(input: CancelPtAppointmentInput!): PtAppointment!
+  walletPayment(input: WalletPaymentInput!): WalletPayment!
+  useMemberVoucher(input: UseMemberVoucherInput!): MemberVoucher!
+  updateNotificationReadStatus(input: UpdateNotificationReadStatusInput!): Int!
+  walletTopup(input: WalletTopupInput!): CheckoutRequest!
+  payProduct(input: PayProductInput!): CheckoutRequest!
+  enrollEntitlement(input: EnrollEntitlementInput!): Entitlement!
+}
+type NotificationList {
+  nodes: [MemberNotification]
+  pageInfo: PageInfo!
+}
+type Option {
+  value: String!
+  label: String!
+}
+type Options {
+  gym: [Gym!]
+  emandateBankList: [Option!]
+}
+type PageInfo {
+  hasMore: Boolean!
+  total: Int!
+  offset: Int!
+  limit: Int!
+}
+type PaymentMethod {
+  id: ID!
+  type: String!
+  brand: String!
+  first6: String!
+  last4: String!
+  expMonth: Int!
+  expYear: Int!
+}
+type Proceed {
+  nextUrl: String!
+}
+type PtAppointment {
+  id: ID!
+  status: String!
+  statusDesc: String!
+  startTime: Time!
+  endTime: Time!
+  trainerNote: String!
+  memberCheckinAt: Time
+  createdAt: Time!
+}
+type PtAppointmentList {
+  nodes: [PtAppointment]
+  pageInfo: PageInfo!
+}
+type PtPackage {
+  id: ID!
+  name: String!
+  desc: String!
+  price: Float!
+  salePrice: Float!
+  validitySlot: Int!
+  validityDay: Int!
+}
+type PtPackageList {
+  nodes: [PtPackage]
+  pageInfo: PageInfo!
+}
+type PtSession {
+  id: ID!
+  status: String!
+  statusDesc: String!
+  packageCode: String!
+  package: PtPackage!
+  trainerID: String!
+  trainer: Trainer
+  usage: Int!
+  usageMax: Int!
+  canBook: Boolean!
+  startDate: String!
+  endDate: String!
+}
+type PtSessionList {
+  nodes: [PtSession]
+  pageInfo: PageInfo!
+}
+type Query {
+  init(input: InitInput!): CurrentUser
+  me: CurrentUser
+  options: Options
+  utils: Utils
+  verifyReferralCode(code: String!): Boolean!
+  emandate(token: String!): Emandate!
+  gymCrowd(input: GymCrowdInput!): GymCrowd!
+  bannerList(input: BannerListInput!, pag: PaginationInput): BannerList
+  ptPackageList(input: PtPackageListInput!, pag: PaginationInput): PtPackageList
+  ptSessionList(input: PtSessionListInput!, pag: PaginationInput): PtSessionList
+  ptAppointmentList(input: PtAppointmentListInput!, pag: PaginationInput): PtAppointmentList
+  membershipPackage: MembershipPackage
+  membershipPackageList(input: MembershipPackageListInput!, pag: PaginationInput): MembershipPackageList
+  classPackageList(input: ClassPackageListInput!, pag: PaginationInput): ClassPackageList
+  classPassList(input: ClassPassListInput!, pag: PaginationInput): ClassPassList
+  trainerList(input: TrainerListInput!, pag: PaginationInput): TrainerList
+  walletTxnList(input: WalletTxnListInput!, pag: PaginationInput): WalletTxnList
+  notification(input: NotificationInput!): MemberNotification
+  notificationList(input: NotificationListInput!, pag: PaginationInput): NotificationList
+  unreadNotificationCount: Int!
+  cashoutList(input: CashoutListInput!, pag: PaginationInput): CashoutList
+  classList(input: ClassListInput!, pag: PaginationInput): ClassList
+  activityList(input: ActivityListInput!, pag: PaginationInput): ActivityList
+  fee(input: FeeInput!): Fee!
+  validatePromoCode(input: ValidatePromoCodeInput!): Validation!
+  counterQrInfo(input: CounterQrInfoInput!): MerchantCounter!
+  memberVoucherList(input: MemberVoucherListInput!, pag: PaginationInput): MemberVoucherList!
+}
+type Redemption {
+  id: String!
+}
+type RefereedMember {
+  id: ID!
+  gymID: String!
+  gym: Gym!
+  imageUrl: String!
+  name: String!
+  isQualified: Boolean!
+  packageDesc: String!
+  createdAt: Time!
+}
+type Referral {
+  cashbackAmount: Float!
+  referees: [RefereedMember!]
+}
+type SettlementSummary {
+  date: String!
+  count: Int!
+  desc: String!
+}
+type Trainer {
+  id: ID!
+  type: String!
+  level: String!
+  imageUrl: String!
+  name: String!
+  desc: String!
+  details: String!
+  contactLink: String!
+}
+type TrainerList {
+  nodes: [Trainer]
+  pageInfo: PageInfo!
+}
+type Utils {
+  getUpdatePaymentMethodLink(membershipID: String!): String!
+  requestOTP(contactNo: String!, purposeCode: String!, channel: String): Boolean!
+  validateOTP(contactNo: String!, purposeCode: String!, otp: String!): String
+}
+type Validation {
+  isValid: Boolean!
+  message: String!
+}
+type Voucher {
+  id: ID!
+  status: String!
+  statusDesc: String!
+  imageUrl: String!
+  desc: String!
+  details: String!
+  tnc: String!
+}
+type Wallet {
+  totalTopup: Float!
+  totalPayment: Float!
+  balance: Float!
+}
+type WalletPayment {
+  imageUrl: String!
+  receiver: String!
+  ref: String!
+  amount: Float!
+  datetime: Time!
+}
+type WalletTxnList {
+  nodes: [MemberWalletTxn]
+  pageInfo: PageInfo!
+}
+scalar Boolean
+scalar Email
+scalar Float
+scalar ID
+scalar Int
+scalar Map
+scalar String
+scalar Time

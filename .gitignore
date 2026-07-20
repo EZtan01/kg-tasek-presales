@@ -1,0 +1,14 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+*.log
+.vite
+
+# Raw source photos — bulk archive kept locally only.
+# The optimized versions used by the site live in /src/photos/.
+Pictures/
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
