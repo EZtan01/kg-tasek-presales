@@ -60,7 +60,7 @@ export function Hero() {
           {...fadeUp(1)}
           className="font-mont text-xs font-semibold uppercase tracking-[0.18em] text-kg-yellow"
         >
-          PRE-SALES · NOW OPEN
+          PRE-SALES OPEN NOW · LAUNCHING MID-OCTOBER
         </motion.p>
 
         <motion.h1
@@ -126,12 +126,13 @@ export function Hero() {
           <div
             className="w-full flex items-center justify-center"
             style={{
+              minHeight: "300px",
               maxHeight: "60vh",
               aspectRatio: "16 / 9",
-              backgroundColor: "#0a0a0a",
+              backgroundColor: "#0f0f0f",
               backgroundImage:
                 "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%)",
-              border: "1px dashed rgba(255, 204, 0, 0.2)",
+              border: "2px dashed rgba(255, 204, 0, 0.3)",
               borderRadius: "24px",
               margin: "0 16px",
             }}
@@ -139,7 +140,7 @@ export function Hero() {
             <div className="text-center px-6">
               <div className="mb-3">
                 <svg
-                  className="w-12 h-12 mx-auto text-yellow-400/40"
+                  className="w-12 h-12 mx-auto text-yellow-400/60"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -152,10 +153,10 @@ export function Hero() {
                   />
                 </svg>
               </div>
-              <p className="text-white/60 font-anton text-lg tracking-wide">
+              <p className="text-white/80 font-anton text-lg tracking-wide">
                 BRANCH PHOTOS COMING SOON
               </p>
-              <p className="text-white/30 text-sm mt-2 italic">
+              <p className="text-white/45 text-sm mt-2 italic">
                 3D renderings of Tasek Central branch will be uploaded here
               </p>
             </div>
