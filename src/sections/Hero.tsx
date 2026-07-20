@@ -1,26 +1,25 @@
 import { motion } from "framer-motion";
 import { CTAButton } from "../components/CTAButtons";
-// HeroCarousel (swipeable gallery + click-to-lightbox) is kept for when the
-// Tasek Central 3D renderings are ready — re-import it and swap the placeholder
-// below for <HeroCarousel images={HERO_IMAGES} /> to re-enable.
+import { HeroCarousel } from "../components/HeroCarousel";
 import { useTracking } from "../hooks/useTracking";
 import { appendUTMs } from "../utils/appendUTMs";
 import { CTA_LINKS, WHATSAPP_MESSAGE } from "../config/site";
 import { EASE } from "../utils/motion";
 
 // "Coming Soon" teaser hero: a centered title block sits ABOVE a full-bleed
-// photo area. The title speaks first, then the visual reinforces. Everything in
-// the title block staggers up on page load (plays once — no scroll re-trigger);
-// the visual fades in just after the title lands.
+// photo gallery. The title speaks first, then the photos reinforce. Everything
+// in the title block staggers up on page load (plays once — no scroll
+// re-trigger); the gallery fades in just after the title lands.
 
-// Tasek Central branch photos aren't ready yet — the hero shows a styled
-// placeholder until the 3D renderings are uploaded. The gallery data + click
-// handler are kept below (disabled) so photos can be dropped back in later.
+// Swipeable hero gallery — the Tasek Central 3D rendering set. Click any slide
+// to open the full-size lightbox (navigable across all six).
 const HERO_IMAGES = [
-  { src: "/photos/Hero1.jpeg", alt: "Tasek Central branch — 3D rendering" },
-  { src: "/photos/Hero2.jpeg", alt: "Tasek Central branch — 3D rendering" },
-  { src: "/photos/Hero3.jpeg", alt: "Tasek Central branch — 3D rendering of weights and benches" },
-  { src: "/photos/Hero4.jpeg", alt: "Tasek Central branch — 3D rendering" },
+  { src: "/photos/tasek-hero-1.jpeg", alt: "Tasek Central branch — 3D rendering 1" },
+  { src: "/photos/tasek-hero-2.jpeg", alt: "Tasek Central branch — 3D rendering 2" },
+  { src: "/photos/tasek-hero-3.jpeg", alt: "Tasek Central branch — 3D rendering 3" },
+  { src: "/photos/tasek-hero-4.jpeg", alt: "Tasek Central branch — 3D rendering 4" },
+  { src: "/photos/tasek-hero-5.jpeg", alt: "Tasek Central branch — 3D rendering 5" },
+  { src: "/photos/tasek-hero-6.jpeg", alt: "Tasek Central branch — 3D rendering 6" },
 ];
 
 // Each element fades up; 150ms stagger between them, slow expo-out easing.
@@ -111,74 +110,29 @@ export function Hero() {
         </motion.p>
       </div>
 
-      {/* === Section 2: photo placeholder (below the title) ===
-          Tasek Central renderings aren't ready yet, so instead of the swipeable
-          gallery we show a styled placeholder. The <HeroCarousel> + click-to-
-          lightbox path is disabled until real photos exist — drop HERO_IMAGES
-          back into it to re-enable. */}
+      {/* === Section 2: full-bleed swipeable photo gallery (below the title) === */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         // Fade in just after the title block lands.
         transition={{ delay: STAGGER * 7, duration: 1.0, ease: EASE }}
+        className="relative w-full overflow-hidden h-[50vh] md:h-[60vh]"
       >
-        <div className="w-full bg-black">
-          {/* Photo placeholder — 16px gutter via the px-4 wrapper (using a
-              horizontal margin here with w-full would overflow the viewport). */}
-          <div className="px-4">
-          <div
-            className="w-full flex items-center justify-center"
-            style={{
-              minHeight: "300px",
-              maxHeight: "60vh",
-              aspectRatio: "16 / 9",
-              backgroundColor: "#0f0f0f",
-              backgroundImage:
-                "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%)",
-              border: "2px dashed rgba(255, 204, 0, 0.3)",
-              borderRadius: "24px",
-            }}
-          >
-            <div className="text-center px-6">
-              <div className="mb-3">
-                <svg
-                  className="w-12 h-12 mx-auto text-yellow-400/60"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <p className="text-white/80 font-anton text-lg tracking-wide">
-                BRANCH PHOTOS COMING SOON
-              </p>
-              <p className="text-white/45 text-sm mt-2 italic">
-                3D renderings of Tasek Central branch will be uploaded here
-              </p>
-            </div>
-          </div>
-          </div>
-
-          {/* Caption below (keep for consistency) */}
-          <p
-            className="text-center italic"
-            style={{
-              color: "rgba(255, 255, 255, 0.5)",
-              fontSize: "13px",
-              padding: "12px 16px 8px",
-              backgroundColor: "#000",
-            }}
-          >
-            Actual 3D rendering coming soon — Tasek Central branch
-          </p>
-        </div>
+        <HeroCarousel images={HERO_IMAGES} />
       </motion.div>
+
+      {/* Caption — clarifies the gallery is a 3D rendering of the actual
+          branch. Black background so it reads as part of the photo block. */}
+      <p
+        className="text-center italic bg-black"
+        style={{
+          color: "rgba(255, 255, 255, 0.5)",
+          fontSize: "13px",
+          padding: "12px 16px 8px",
+        }}
+      >
+        Actual 3D rendering of Tasek Central branch
+      </p>
     </section>
   );
 }
