@@ -28,8 +28,7 @@ function BukitIndahPage() {
         <PresalesCountdown />
         <ValueBand />
         <WhyKG />
-        <ThePlace />
-        <ThreeDTour />
+        <ThePlace />    
         <HowTo />
         <Timeline />
         <DownloadCTA />
