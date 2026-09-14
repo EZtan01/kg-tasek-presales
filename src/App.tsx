@@ -1,4 +1,3 @@
-import { ThreeDTour } from "./sections/ThreeDTour";
 import { Routes, Route } from "react-router-dom";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { PresalesCountdown } from "./components/PresalesCountdown";
